@@ -1,0 +1,363 @@
+﻿<UserControl x:Class="SteamTool.MWM.View.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SteamTool.MWM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <!-- Title Core Info -->
+        <TextBlock Text="Core Info"
+                   Foreground="White"
+                   FontSize="28"
+                   HorizontalAlignment="Center"
+                   Margin="0, 10, 0, 10"
+                   FontWeight="Bold"/>
+        <!-- First Row (Steam ID & Bans and Restrictions -->
+        <StackPanel Orientation="Horizontal">
+            <Border Width="341"
+                    Height="200">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 2">
+                        <GradientStop Color="#5bc3ff" Offset="0.0"/>
+                        <GradientStop Color="#3aa0ff" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0, 0, 341, 200"/>
+                </Border.Clip>
+
+
+                <Grid>
+                    <StackPanel>
+                        <!-- Steam ID Info -->
+                        <TextBlock Text="Steam ID"
+                                   Grid.Row="0"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   Margin="20, 10, 10, 0"
+                                   TextAlignment="Center"/>
+                    </StackPanel>
+                    <Grid Margin="15, 45, 15, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Vanity URL"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="16"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="versorion"
+                                   Name="VanityURL"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   Foreground="White"
+                                   FontSize="16"/>
+                        <TextBlock Text="AccountID"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="16"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="123612099"
+                                   Name="AccountID"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Foreground="White"
+                                   FontSize="16"/>
+                        <TextBlock Text="SteamID"
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="16"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="76561198083877827"
+                                   Name="SteamID"
+                                   Grid.Row="2"
+                                   Grid.Column="1"
+                                   Foreground="White"
+                                   FontSize="16"/>
+                        <TextBlock Text="Steam2 ID"
+                                   Grid.Row="3"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="16"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="STEAM_1:61806049"
+                                   Name="Steam2ID"
+                                   Grid.Row="3"
+                                   Grid.Column="1"
+                                   Foreground="White"
+                                   FontSize="16"/>
+                        <TextBlock Text="Steam3 ID"
+                                   Grid.Row="4"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="16"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="[U:1:123612099]"
+                                   Name="Steam3ID"
+                                   Grid.Row="4"
+                                   Grid.Column="1"
+                                   Foreground="White"
+                                   FontSize="16"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            <!-- Profile Picture -->
+            <Border Width="341"
+                    Height="200"
+                    CornerRadius="10"
+                    Margin="15, 0, 0, 0">
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 2">
+                        <GradientStop Color="#CCBA7C" Offset="0.0"/>
+                        <GradientStop Color="#413A27" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                <StackPanel>
+                    <TextBlock Text="Bans and Restrictions"
+                                   Foreground="White"
+                                   FontSize="28"
+                                   Margin="10, 10, 10, 0"
+                                   TextAlignment="Center"/>
+                </StackPanel>
+                    <Grid Margin="15, 45, 15, 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Game Bans"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"/>
+                        <Image Source="GreenMark.ico"
+                               Name="GameBansGreen"
+                               Grid.Row="0"
+                               Grid.Column="1"/>
+                        <Image Source="RedMark.ico"
+                               Name="GameBansRed"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               Visibility="Hidden"/>
+                        <TextBlock Text="VAC Bans"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"/>
+                        <Image Source="GreenMark.ico"
+                               Name="VACBansGreen"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Visibility="Hidden"/>
+                        <Image Source="RedMark.ico"
+                               Name="VACBansRed"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+                        <TextBlock Text="Community Ban"
+                                   Grid.Row="0"
+                                   Grid.Column="2"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Margin="15, 0, 0, 0"/>
+                        <Image Source="GreenMark.ico"
+                               Name="CommunityBanGreen"
+                               Grid.Row="0"
+                               Grid.Column="3"/>
+                        <Image Source="RedMark.ico"
+                               Name="CommunityBanRed"
+                               Grid.Row="0"
+                               Grid.Column="3"
+                               Visibility="Hidden"/>
+                        <TextBlock Text="Trade Ban"
+                                   Grid.Row="1"
+                                   Grid.Column="2"
+                                   Foreground="White"
+                                   FontSize="14"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Margin="15, 0, 0, 0"/>
+                        <Image Source="GreenMark.ico"
+                               Name="TradeBanGreen"
+                               Grid.Row="1"
+                               Grid.Column="3"/>
+                        <Image Source="RedMark.ico"
+                               Name="TradeBanRed"
+                               Grid.Row="1"
+                               Grid.Column="3"
+                               Visibility="Hidden"/>
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </StackPanel>
+
+        <StackPanel>
+            <TextBlock Text="Steam Stats"
+                   Foreground="White"
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   Margin="0, 10, 0, 5"
+                   FontWeight="Bold"/>
+        </StackPanel>
+
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Margin" Value="15, 0, 0, 0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel Orientation="Horizontal">
+                <!-- Profile Picture -->
+                <Border Width="163"
+                        Height="150"
+                        Background="#222f3e"
+                        CornerRadius="10"
+                        Margin="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Profile Picture"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="0"/>
+                        <TextBlock Text="86"
+                                   Name="GameCount"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="White"/>
+                    </Grid>
+                </Border>
+                <!-- Steam LVL -->
+                <Border Width="163"
+                        Height="150"
+                        Background="#2A2B2E"
+                        CornerRadius="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Steam LVL"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="0"/>
+
+                        <Border Name="SteamLVLCircle"
+                                Grid.Row="1"
+                                CornerRadius="50"
+                                Width="80"
+                                Height="80"
+                                Margin="10"
+                                Padding="0, 20, 0, 0"
+                                BorderBrush="White"
+                                BorderThickness="2">
+                            <TextBlock Text="46"
+                                       Name="SteamLVL"
+                                       HorizontalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="White"/>
+                        </Border>
+                    </Grid>
+                </Border>
+                <!-- Hours on record -->
+                <Border Width="163"
+                        Height="150"
+                        Background="#2c3e50"
+                        CornerRadius="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Hours on record"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="0"/>
+                        <TextBlock Text="5,001h"
+                                   Name="HoursOnRecord"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="White"/>
+                    </Grid>
+                </Border>
+                <!-- Creation Date -->
+                <Border Width="163"
+                        Height="150"
+                        Background="#30336b"
+                        CornerRadius="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Created on"
+                                   Foreground="White"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="0"/>
+                        <TextBlock Text="13 Februrary 2013"
+                                   Name="CreationDate"
+                                   Grid.Row="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="18"
+                                   Foreground="White"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
