@@ -1,4 +1,6 @@
-﻿namespace Steam_Tool_Console
+﻿using System;
+
+namespace Steam_Tool_Console
 {
     public class Models
     {
@@ -22,7 +24,7 @@
             public TransferParameters TransferParameters;
             public bool EmailAuthNeeded;
             public string EmailDomain;
-            public string EmailSteamId;
+            public long EmailSteamId;
         }
         
         public class GetRsaKeyResponse

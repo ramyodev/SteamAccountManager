@@ -5,7 +5,6 @@ using EasyHttp.Http;
 using Newtonsoft.Json;
 using RandomUserAgent;
 using HttpClient = EasyHttp.Http.HttpClient;
-using static Steam_Tool_Console.EncryptPasswordFactory;
 using static Steam_Tool_Console.Models;
 
 
@@ -26,9 +25,10 @@ namespace Steam_Tool_Console
         {
             // Request Public Key Modulo and Exponent from Steam Server (changed all 60 minutes)
             GetRsaKeyResponse rsaData = GetRsaData(username, password);
+
             
-            var encPassword = EncryptPassword(rsaData);
-            
+            var encPassword = EncryptPasswordFactory.EncryptPassword(rsaData);
+
             // Try logging in to Server
             var doLogin = DoLogin(username, encPassword, rsaData);
 
@@ -39,14 +39,24 @@ namespace Steam_Tool_Console
             else if (doLogin.CaptchaNeeded)
             {
                 string captcha = GetCaptcha(doLogin.CaptchaGid);
-                var captchaDoLogin = DoLogin(username, encPassword, rsaData, captchaText: captcha, captchaGid: doLogin.CaptchaGid);
+                doLogin = DoLogin(username, encPassword, rsaData, captchaText: captcha, captchaGid: doLogin.CaptchaGid);
             }
-            else if (doLogin.EmailAuthNeeded)
+            
+            if (doLogin.EmailAuthNeeded)
             {
                 
             }
-
-            Console.WriteLine(doLogin.Message);
+            
+            Console.WriteLine(doLogin.Success);
+            
+            try
+            {
+                Console.WriteLine(doLogin.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             
             return new Dictionary<string, string>();
         }
@@ -67,8 +77,8 @@ namespace Steam_Tool_Console
             if (responseObject["success"] == "True")
             {
                 rsaResponse.Success = responseObject["success"] == "True";
-                rsaResponse.PublicKeyExp = responseObject["publickey_mod"];
-                rsaResponse.PublicKeyMod = responseObject["publickey_exp"];
+                rsaResponse.PublicKeyExp = responseObject["publickey_exp"];
+                rsaResponse.PublicKeyMod = responseObject["publickey_mod"];
                 rsaResponse.Rsatimestamp = responseObject["timestamp"];
                 rsaResponse.Password = password;
             }
@@ -99,6 +109,9 @@ namespace Steam_Tool_Console
             
             // Do Login and Serialize Response Data
             var doLoginResponse = http.Post(SteamBaseUrl + SteamDoLoginEndpoint, doLoginDict, HttpContentTypes.ApplicationXWwwFormUrlEncoded);
+            
+            Console.WriteLine(doLoginResponse.RawText);
+            
             Dictionary<string, string> doLoginResponseDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(doLoginResponse.RawText);
 
             TransferParameters transferParameters = new TransferParameters();
@@ -113,7 +126,6 @@ namespace Steam_Tool_Console
             }
             
             // Get all Response Parameters from Login Response and create Response Object
-
             
             LoginResponse loginResponse = new LoginResponse()
             {
@@ -167,9 +179,9 @@ namespace Steam_Tool_Console
             
             if (doLoginResponseDict.ContainsKey("emailsteamid"))
             {
-                loginResponse.EmailSteamId = doLoginResponseDict["emailsteamid"];
+                loginResponse.EmailSteamId = Convert.ToInt64(doLoginResponseDict["emailsteamid"]);
             }
-
+            
             return loginResponse;
         }
 
@@ -186,9 +198,12 @@ namespace Steam_Tool_Console
             return captchaText;
         }
         
-        public static string GetEmailAuth(string captchaId)
+        public static string GetEmailAuth(string username, string emaildomain, long emailsteamid)
         {
-            return "";
+            Console.WriteLine($"Please enter Captcha (Domain: {emaildomain}, Username: {username}):");
+            string emailAuth = Console.ReadLine();
+            
+            return emailAuth;
         }
     }
 }

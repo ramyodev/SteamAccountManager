@@ -6,7 +6,7 @@ using static Steam_Tool_Console.Models;
 
 namespace Steam_Tool_Console
 {
-    internal static class EncryptPasswordFactory
+    static class EncryptPasswordFactory
     {
         private const string Base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
         private const string Hex = "0123456789abcdef";
@@ -34,7 +34,7 @@ namespace Steam_Tool_Console
             if (encryptedString.EndsWith("==")) {}
             else if (encryptedString.EndsWith("=")) {encryptedString += "=";}
             else {encryptedString += "==";}
-            
+
             return encryptedString;
         }
         
