@@ -2,18 +2,10 @@
 using System.Globalization;
 using System.Numerics;
 using System.Text;
+using static Steam_Tool_Console.Models;
 
-namespace Zemo_Steam
+namespace Steam_Tool_Console
 {
-    public class GetRsaKeyResponse
-    {
-        public bool Success;
-        public string Password;
-        public string PublicKeyExp;
-        public string PublicKeyMod;
-        public string Rsatimestamp;
-    }
-    
     internal static class EncryptPasswordFactory
     {
         private const string Base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
