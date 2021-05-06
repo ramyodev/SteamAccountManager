@@ -14,8 +14,8 @@ namespace Steam_Tool_Console
         public static string EncryptPassword(GetRsaKeyResponse getRsaKeyResponse)
         {
             // Convert the public keys to BigIntegers
-            var modulus = CreateBigInteger(getRsaKeyResponse.PublicKeyMod);
-            var exponent = CreateBigInteger(getRsaKeyResponse.PublicKeyExp);
+            var modulus = CreateBigInteger(getRsaKeyResponse.publickey_mod);
+            var exponent = CreateBigInteger(getRsaKeyResponse.publickey_exp);
 
             // Original: $data = this.pkcs1pad2($data,($pubkey.modulus.bitLength()+7)>>3);
             // I'm going to hardcode the bitlength, I can't figure that out right now.
